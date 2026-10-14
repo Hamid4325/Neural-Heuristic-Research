@@ -1,0 +1,345 @@
+{
+  "seed": 42,
+  "num_per_config": 50,
+  "sizes": [
+    20,
+    40,
+    60,
+    80,
+    100
+  ],
+  "densities": [
+    0.1,
+    0.2,
+    0.3,
+    0.4
+  ],
+  "methods": [
+    "backtracker",
+    "perlin"
+  ],
+  "created": "2026-10-15T01:05:59",
+  "configs": [
+    {
+      "file": "mazes_backtracker_20_10.npz",
+      "method": "backtracker",
+      "size": 20,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_20_20.npz",
+      "method": "backtracker",
+      "size": 20,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_20_30.npz",
+      "method": "backtracker",
+      "size": 20,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_20_40.npz",
+      "method": "backtracker",
+      "size": 20,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_40_10.npz",
+      "method": "backtracker",
+      "size": 40,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_40_20.npz",
+      "method": "backtracker",
+      "size": 40,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_40_30.npz",
+      "method": "backtracker",
+      "size": 40,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_40_40.npz",
+      "method": "backtracker",
+      "size": 40,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_60_10.npz",
+      "method": "backtracker",
+      "size": 60,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_60_20.npz",
+      "method": "backtracker",
+      "size": 60,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_60_30.npz",
+      "method": "backtracker",
+      "size": 60,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_60_40.npz",
+      "method": "backtracker",
+      "size": 60,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_80_10.npz",
+      "method": "backtracker",
+      "size": 80,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_80_20.npz",
+      "method": "backtracker",
+      "size": 80,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_80_30.npz",
+      "method": "backtracker",
+      "size": 80,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_80_40.npz",
+      "method": "backtracker",
+      "size": 80,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_100_10.npz",
+      "method": "backtracker",
+      "size": 100,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_100_20.npz",
+      "method": "backtracker",
+      "size": 100,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_100_30.npz",
+      "method": "backtracker",
+      "size": 100,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_backtracker_100_40.npz",
+      "method": "backtracker",
+      "size": 100,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_20_10.npz",
+      "method": "perlin",
+      "size": 20,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_20_20.npz",
+      "method": "perlin",
+      "size": 20,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_20_30.npz",
+      "method": "perlin",
+      "size": 20,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_20_40.npz",
+      "method": "perlin",
+      "size": 20,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_40_10.npz",
+      "method": "perlin",
+      "size": 40,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_40_20.npz",
+      "method": "perlin",
+      "size": 40,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_40_30.npz",
+      "method": "perlin",
+      "size": 40,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_40_40.npz",
+      "method": "perlin",
+      "size": 40,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_60_10.npz",
+      "method": "perlin",
+      "size": 60,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_60_20.npz",
+      "method": "perlin",
+      "size": 60,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_60_30.npz",
+      "method": "perlin",
+      "size": 60,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_60_40.npz",
+      "method": "perlin",
+      "size": 60,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_80_10.npz",
+      "method": "perlin",
+      "size": 80,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_80_20.npz",
+      "method": "perlin",
+      "size": 80,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_80_30.npz",
+      "method": "perlin",
+      "size": 80,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_80_40.npz",
+      "method": "perlin",
+      "size": 80,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_100_10.npz",
+      "method": "perlin",
+      "size": 100,
+      "target_density": 0.1,
+      "achieved_density_mean": 0.1,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_100_20.npz",
+      "method": "perlin",
+      "size": 100,
+      "target_density": 0.2,
+      "achieved_density_mean": 0.2,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_100_30.npz",
+      "method": "perlin",
+      "size": 100,
+      "target_density": 0.3,
+      "achieved_density_mean": 0.3,
+      "count": 50
+    },
+    {
+      "file": "mazes_perlin_100_40.npz",
+      "method": "perlin",
+      "size": 100,
+      "target_density": 0.4,
+      "achieved_density_mean": 0.4,
+      "count": 50
+    }
+  ],
+  "total_mazes": 2000
+}

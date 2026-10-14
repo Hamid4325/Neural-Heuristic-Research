@@ -1,0 +1,368 @@
+{
+  "total_mazes": 2000,
+  "total_mazes_start_unreachable": 88,
+  "total_free_cells": 6600000,
+  "total_unreachable_free_cells": 195373,
+  "files": [
+    {
+      "file": "mazes_backtracker_100_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 450000,
+      "reachable_cells": 449991,
+      "unreachable_free_cells": 9,
+      "max_h_star": 191.0
+    },
+    {
+      "file": "mazes_backtracker_100_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 400000,
+      "reachable_cells": 399943,
+      "unreachable_free_cells": 57,
+      "max_h_star": 182.0
+    },
+    {
+      "file": "mazes_backtracker_100_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 350000,
+      "reachable_cells": 349841,
+      "unreachable_free_cells": 159,
+      "max_h_star": 198.0
+    },
+    {
+      "file": "mazes_backtracker_100_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 300000,
+      "reachable_cells": 299814,
+      "unreachable_free_cells": 186,
+      "max_h_star": 220.0
+    },
+    {
+      "file": "mazes_backtracker_20_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 18000,
+      "reachable_cells": 17998,
+      "unreachable_free_cells": 2,
+      "max_h_star": 36.0
+    },
+    {
+      "file": "mazes_backtracker_20_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 16000,
+      "reachable_cells": 15987,
+      "unreachable_free_cells": 13,
+      "max_h_star": 38.0
+    },
+    {
+      "file": "mazes_backtracker_20_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 14000,
+      "reachable_cells": 13982,
+      "unreachable_free_cells": 18,
+      "max_h_star": 40.0
+    },
+    {
+      "file": "mazes_backtracker_20_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 12000,
+      "reachable_cells": 11974,
+      "unreachable_free_cells": 26,
+      "max_h_star": 54.0
+    },
+    {
+      "file": "mazes_backtracker_40_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 72000,
+      "reachable_cells": 71996,
+      "unreachable_free_cells": 4,
+      "max_h_star": 75.0
+    },
+    {
+      "file": "mazes_backtracker_40_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 64000,
+      "reachable_cells": 63986,
+      "unreachable_free_cells": 14,
+      "max_h_star": 76.0
+    },
+    {
+      "file": "mazes_backtracker_40_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 56000,
+      "reachable_cells": 55955,
+      "unreachable_free_cells": 45,
+      "max_h_star": 77.0
+    },
+    {
+      "file": "mazes_backtracker_40_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 1,
+      "free_cells": 48000,
+      "reachable_cells": 46974,
+      "unreachable_free_cells": 1026,
+      "max_h_star": 87.0
+    },
+    {
+      "file": "mazes_backtracker_60_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 162000,
+      "reachable_cells": 161996,
+      "unreachable_free_cells": 4,
+      "max_h_star": 113.0
+    },
+    {
+      "file": "mazes_backtracker_60_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 144000,
+      "reachable_cells": 143970,
+      "unreachable_free_cells": 30,
+      "max_h_star": 115.0
+    },
+    {
+      "file": "mazes_backtracker_60_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 126000,
+      "reachable_cells": 125934,
+      "unreachable_free_cells": 66,
+      "max_h_star": 115.0
+    },
+    {
+      "file": "mazes_backtracker_60_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 108000,
+      "reachable_cells": 107890,
+      "unreachable_free_cells": 110,
+      "max_h_star": 122.0
+    },
+    {
+      "file": "mazes_backtracker_80_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 288000,
+      "reachable_cells": 287995,
+      "unreachable_free_cells": 5,
+      "max_h_star": 150.0
+    },
+    {
+      "file": "mazes_backtracker_80_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 256000,
+      "reachable_cells": 255957,
+      "unreachable_free_cells": 43,
+      "max_h_star": 154.0
+    },
+    {
+      "file": "mazes_backtracker_80_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 224000,
+      "reachable_cells": 223877,
+      "unreachable_free_cells": 123,
+      "max_h_star": 154.0
+    },
+    {
+      "file": "mazes_backtracker_80_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 1,
+      "free_cells": 192000,
+      "reachable_cells": 191853,
+      "unreachable_free_cells": 147,
+      "max_h_star": 163.0
+    },
+    {
+      "file": "mazes_perlin_100_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 450000,
+      "reachable_cells": 449854,
+      "unreachable_free_cells": 146,
+      "max_h_star": 189.0
+    },
+    {
+      "file": "mazes_perlin_100_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 1,
+      "free_cells": 400000,
+      "reachable_cells": 398424,
+      "unreachable_free_cells": 1576,
+      "max_h_star": 217.0
+    },
+    {
+      "file": "mazes_perlin_100_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 2,
+      "free_cells": 350000,
+      "reachable_cells": 332396,
+      "unreachable_free_cells": 17604,
+      "max_h_star": 222.0
+    },
+    {
+      "file": "mazes_perlin_100_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 11,
+      "free_cells": 300000,
+      "reachable_cells": 244840,
+      "unreachable_free_cells": 55160,
+      "max_h_star": 318.0
+    },
+    {
+      "file": "mazes_perlin_20_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 1,
+      "free_cells": 18000,
+      "reachable_cells": 17644,
+      "unreachable_free_cells": 356,
+      "max_h_star": 37.0
+    },
+    {
+      "file": "mazes_perlin_20_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 1,
+      "free_cells": 16000,
+      "reachable_cells": 15903,
+      "unreachable_free_cells": 97,
+      "max_h_star": 39.0
+    },
+    {
+      "file": "mazes_perlin_20_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 5,
+      "free_cells": 14000,
+      "reachable_cells": 12340,
+      "unreachable_free_cells": 1660,
+      "max_h_star": 63.0
+    },
+    {
+      "file": "mazes_perlin_20_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 19,
+      "free_cells": 12000,
+      "reachable_cells": 6511,
+      "unreachable_free_cells": 5489,
+      "max_h_star": 58.0
+    },
+    {
+      "file": "mazes_perlin_40_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 72000,
+      "reachable_cells": 71959,
+      "unreachable_free_cells": 41,
+      "max_h_star": 71.0
+    },
+    {
+      "file": "mazes_perlin_40_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 64000,
+      "reachable_cells": 63655,
+      "unreachable_free_cells": 345,
+      "max_h_star": 81.0
+    },
+    {
+      "file": "mazes_perlin_40_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 3,
+      "free_cells": 56000,
+      "reachable_cells": 53558,
+      "unreachable_free_cells": 2442,
+      "max_h_star": 91.0
+    },
+    {
+      "file": "mazes_perlin_40_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 14,
+      "free_cells": 48000,
+      "reachable_cells": 34612,
+      "unreachable_free_cells": 13388,
+      "max_h_star": 111.0
+    },
+    {
+      "file": "mazes_perlin_60_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 162000,
+      "reachable_cells": 161896,
+      "unreachable_free_cells": 104,
+      "max_h_star": 110.0
+    },
+    {
+      "file": "mazes_perlin_60_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 144000,
+      "reachable_cells": 143615,
+      "unreachable_free_cells": 385,
+      "max_h_star": 116.0
+    },
+    {
+      "file": "mazes_perlin_60_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 5,
+      "free_cells": 126000,
+      "reachable_cells": 114415,
+      "unreachable_free_cells": 11585,
+      "max_h_star": 176.0
+    },
+    {
+      "file": "mazes_perlin_60_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 11,
+      "free_cells": 108000,
+      "reachable_cells": 79954,
+      "unreachable_free_cells": 28046,
+      "max_h_star": 143.0
+    },
+    {
+      "file": "mazes_perlin_80_10.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 288000,
+      "reachable_cells": 287868,
+      "unreachable_free_cells": 132,
+      "max_h_star": 151.0
+    },
+    {
+      "file": "mazes_perlin_80_20.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 0,
+      "free_cells": 256000,
+      "reachable_cells": 255105,
+      "unreachable_free_cells": 895,
+      "max_h_star": 162.0
+    },
+    {
+      "file": "mazes_perlin_80_30.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 1,
+      "free_cells": 224000,
+      "reachable_cells": 214592,
+      "unreachable_free_cells": 9408,
+      "max_h_star": 187.0
+    },
+    {
+      "file": "mazes_perlin_80_40.npz",
+      "mazes": 50,
+      "mazes_start_unreachable": 12,
+      "free_cells": 192000,
+      "reachable_cells": 147573,
+      "unreachable_free_cells": 44427,
+      "max_h_star": 244.0
+    }
+  ]
+}
