@@ -1,0 +1,30 @@
+# Generated data (never commit)
+data/
+*.npy
+*.npz
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Model files (for later deliverables)
+*.pt
+*.pth
+
+# LaTeX build files (keep main.tex and main.pdf)
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
