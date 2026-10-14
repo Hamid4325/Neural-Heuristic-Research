@@ -5,9 +5,9 @@
 **Deliverable:** 1 (Problem Definition & Data Foundations)
 
 ## Team Members
-- Student 1
-- Student 2
-- Student 3
+- Muhammad Abdullah Saeed
+- Muhammad Hamid Abad
+- Abdullah Zia
 
 ## Project Summary
 Research project comparing classic A* (Manhattan heuristic) with neural-guided A* in procedurally generated grid mazes. A PyTorch feed-forward network is trained on Dijkstra ground-truth distances, then evaluated on nodes expanded, path optimality, per-move latency, and heuristic admissibility.
