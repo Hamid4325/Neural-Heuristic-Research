@@ -13,7 +13,7 @@ venv/
 *.pt
 *.pth
 
-# LaTeX build files (keep main.tex and main.pdf)
+# LaTeX build files (keep main.tex and the compiled PDF)
 *.aux
 *.log
 *.out

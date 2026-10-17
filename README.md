@@ -40,7 +40,7 @@ This deliverable covers:
 ├── figures/                 # EDA charts used in the report
 └── report/
     ├── main.tex
-    └── main.pdf
+    └── Neural_Heuristic_Research.pdf
 ```
 Generated data is written to `data/`, which is excluded via `.gitignore` and is not committed.
 
@@ -87,7 +87,7 @@ Produced with a fixed seed (42) using `--num-per-config 50` (2 generators x 5 si
 Full metrics: `data_scripts/generation_log.json`, `label_log.json`, `clean_log.json`.
 
 ## Report
-The compiled report is at `report/main.pdf` (source: `report/main.tex`).
+The compiled report is at `report/Neural_Heuristic_Research.pdf` (source: `report/main.tex`).
 To rebuild the PDF, upload `report/main.tex` together with the `figures/` folder to
 [Overleaf](https://www.overleaf.com) (the document uses only standard packages).
 
