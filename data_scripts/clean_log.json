@@ -1,415 +1,415 @@
 {
   "summary": {
-    "initial_total_mazes": 400,
-    "dropped_unreachable_mazes": 16,
+    "initial_total_mazes": 2000,
+    "dropped_unreachable_mazes": 88,
     "dropped_duplicate_mazes": 0,
-    "dropped_outlier_mazes": 6,
-    "final_cleaned_mazes": 378,
-    "total_cells_inspected": 1674800,
-    "total_unreachable_cells_set_sentinel": 424443
+    "dropped_outlier_mazes": 36,
+    "final_cleaned_mazes": 1876,
+    "total_cells_inspected": 8310000,
+    "total_unreachable_cells_set_sentinel": 2094563
   },
   "iqr_bounds_per_size": {
     "100": {
-      "sample_count": 78,
-      "q1": 68.0,
-      "q3": 103.75,
-      "iqr": 35.75,
-      "lower_bound": 14.375,
-      "upper_bound": 157.375
+      "sample_count": 386,
+      "q1": 71.0,
+      "q3": 107.0,
+      "iqr": 36.0,
+      "lower_bound": 17.0,
+      "upper_bound": 161.0
     },
     "20": {
-      "sample_count": 76,
+      "sample_count": 374,
       "q1": 14.0,
-      "q3": 22.0,
-      "iqr": 8.0,
-      "lower_bound": 2.0,
-      "upper_bound": 34.0
+      "q3": 23.0,
+      "iqr": 9.0,
+      "lower_bound": 0.5,
+      "upper_bound": 36.5
     },
     "40": {
-      "sample_count": 75,
-      "q1": 27.5,
-      "q3": 43.0,
-      "iqr": 15.5,
-      "lower_bound": 4.25,
-      "upper_bound": 66.25
+      "sample_count": 382,
+      "q1": 27.0,
+      "q3": 42.0,
+      "iqr": 15.0,
+      "lower_bound": 4.5,
+      "upper_bound": 64.5
     },
     "60": {
-      "sample_count": 78,
-      "q1": 44.0,
-      "q3": 64.0,
-      "iqr": 20.0,
-      "lower_bound": 14.0,
-      "upper_bound": 94.0
+      "sample_count": 384,
+      "q1": 42.0,
+      "q3": 63.0,
+      "iqr": 21.0,
+      "lower_bound": 10.5,
+      "upper_bound": 94.5
     },
     "80": {
-      "sample_count": 77,
+      "sample_count": 386,
       "q1": 57.0,
-      "q3": 85.0,
-      "iqr": 28.0,
-      "lower_bound": 15.0,
-      "upper_bound": 127.0
+      "q3": 87.0,
+      "iqr": 30.0,
+      "lower_bound": 12.0,
+      "upper_bound": 132.0
     }
   },
   "files": [
     {
       "file": "mazes_backtracker_100_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 10000
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 50009
     },
     {
       "file": "mazes_backtracker_100_20.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 20015
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 100057
     },
     {
       "file": "mazes_backtracker_100_30.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 1,
-      "cleaned_mazes": 9,
-      "unreachable_cells_set_sentinel": 27024
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 147154
     },
     {
       "file": "mazes_backtracker_100_40.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 1,
-      "cleaned_mazes": 9,
-      "unreachable_cells_set_sentinel": 36036
+      "dropped_outlier_mazes": 2,
+      "cleaned_mazes": 48,
+      "unreachable_cells_set_sentinel": 192181
     },
     {
       "file": "mazes_backtracker_20_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 400
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 2002
     },
     {
       "file": "mazes_backtracker_20_20.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 802
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 4013
     },
     {
       "file": "mazes_backtracker_20_30.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 1207
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 6018
     },
     {
       "file": "mazes_backtracker_20_40.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 1607
+      "dropped_outlier_mazes": 3,
+      "cleaned_mazes": 47,
+      "unreachable_cells_set_sentinel": 7544
     },
     {
       "file": "mazes_backtracker_40_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 1600
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 8004
     },
     {
       "file": "mazes_backtracker_40_20.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 3201
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 16014
     },
     {
       "file": "mazes_backtracker_40_30.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 4811
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 24045
     },
     {
       "file": "mazes_backtracker_40_40.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 1,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 6410
+      "dropped_outlier_mazes": 1,
+      "cleaned_mazes": 48,
+      "unreachable_cells_set_sentinel": 30787
     },
     {
       "file": "mazes_backtracker_60_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 3600
+      "dropped_outlier_mazes": 1,
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 17644
     },
     {
       "file": "mazes_backtracker_60_20.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 7205
+      "dropped_outlier_mazes": 1,
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 35310
     },
     {
       "file": "mazes_backtracker_60_30.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 10812
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 54066
     },
     {
       "file": "mazes_backtracker_60_40.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 14423
+      "dropped_outlier_mazes": 1,
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 70669
     },
     {
       "file": "mazes_backtracker_80_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 6402
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 32005
     },
     {
       "file": "mazes_backtracker_80_20.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 12805
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 64043
     },
     {
       "file": "mazes_backtracker_80_30.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 19222
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 96123
     },
     {
       "file": "mazes_backtracker_80_40.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 1,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 25634
+      "dropped_outlier_mazes": 2,
+      "cleaned_mazes": 47,
+      "unreachable_cells_set_sentinel": 120456
     },
     {
       "file": "mazes_perlin_100_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 10010
+      "dropped_outlier_mazes": 1,
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 49145
     },
     {
       "file": "mazes_perlin_100_20.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 1,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 20159
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 99410
     },
     {
       "file": "mazes_perlin_100_30.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 2,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 31280
+      "cleaned_mazes": 48,
+      "unreachable_cells_set_sentinel": 148955
     },
     {
       "file": "mazes_perlin_100_40.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 2,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 11,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 8,
-      "unreachable_cells_set_sentinel": 37158
+      "dropped_outlier_mazes": 3,
+      "cleaned_mazes": 36,
+      "unreachable_cells_set_sentinel": 168319
     },
     {
       "file": "mazes_perlin_20_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 1,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 9,
-      "unreachable_cells_set_sentinel": 360
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 1964
     },
     {
       "file": "mazes_perlin_20_20.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 1,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 843
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 4011
     },
     {
       "file": "mazes_perlin_20_30.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 2,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 5,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 1,
-      "cleaned_mazes": 7,
-      "unreachable_cells_set_sentinel": 940
+      "dropped_outlier_mazes": 3,
+      "cleaned_mazes": 42,
+      "unreachable_cells_set_sentinel": 5635
     },
     {
       "file": "mazes_perlin_20_40.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 1,
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 19,
       "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 9,
-      "unreachable_cells_set_sentinel": 2078
+      "dropped_outlier_mazes": 1,
+      "cleaned_mazes": 30,
+      "unreachable_cells_set_sentinel": 6912
     },
     {
       "file": "mazes_perlin_40_10.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 1608
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 8041
     },
     {
       "file": "mazes_perlin_40_20.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 0,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 3260
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 16345
     },
     {
       "file": "mazes_perlin_40_30.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 1,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 9,
-      "unreachable_cells_set_sentinel": 4480
-    },
-    {
-      "file": "mazes_perlin_40_40.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 4,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 1,
-      "cleaned_mazes": 5,
-      "unreachable_cells_set_sentinel": 3873
-    },
-    {
-      "file": "mazes_perlin_60_10.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 3609
-    },
-    {
-      "file": "mazes_perlin_60_20.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 7294
-    },
-    {
-      "file": "mazes_perlin_60_30.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 1,
-      "cleaned_mazes": 9,
-      "unreachable_cells_set_sentinel": 9917
-    },
-    {
-      "file": "mazes_perlin_60_40.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 2,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 1,
-      "cleaned_mazes": 7,
-      "unreachable_cells_set_sentinel": 13450
-    },
-    {
-      "file": "mazes_perlin_80_10.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 6408
-    },
-    {
-      "file": "mazes_perlin_80_20.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 12983
-    },
-    {
-      "file": "mazes_perlin_80_30.npz",
-      "initial_mazes": 10,
-      "dropped_unreachable_mazes": 0,
-      "dropped_duplicate_mazes": 0,
-      "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 10,
-      "unreachable_cells_set_sentinel": 20748
-    },
-    {
-      "file": "mazes_perlin_80_40.npz",
-      "initial_mazes": 10,
+      "initial_mazes": 50,
       "dropped_unreachable_mazes": 3,
       "dropped_duplicate_mazes": 0,
       "dropped_outlier_mazes": 0,
-      "cleaned_mazes": 7,
-      "unreachable_cells_set_sentinel": 20769
+      "cleaned_mazes": 47,
+      "unreachable_cells_set_sentinel": 23705
+    },
+    {
+      "file": "mazes_perlin_40_40.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 14,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 3,
+      "cleaned_mazes": 33,
+      "unreachable_cells_set_sentinel": 25338
+    },
+    {
+      "file": "mazes_perlin_60_10.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 0,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 1,
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 17729
+    },
+    {
+      "file": "mazes_perlin_60_20.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 0,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 0,
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 36385
+    },
+    {
+      "file": "mazes_perlin_60_30.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 5,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 5,
+      "cleaned_mazes": 40,
+      "unreachable_cells_set_sentinel": 44870
+    },
+    {
+      "file": "mazes_perlin_60_40.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 11,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 2,
+      "cleaned_mazes": 37,
+      "unreachable_cells_set_sentinel": 66637
+    },
+    {
+      "file": "mazes_perlin_80_10.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 0,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 0,
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 32132
+    },
+    {
+      "file": "mazes_perlin_80_20.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 0,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 0,
+      "cleaned_mazes": 50,
+      "unreachable_cells_set_sentinel": 64895
+    },
+    {
+      "file": "mazes_perlin_80_30.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 1,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 0,
+      "cleaned_mazes": 49,
+      "unreachable_cells_set_sentinel": 99285
+    },
+    {
+      "file": "mazes_perlin_80_40.npz",
+      "initial_mazes": 50,
+      "dropped_unreachable_mazes": 12,
+      "dropped_duplicate_mazes": 0,
+      "dropped_outlier_mazes": 5,
+      "cleaned_mazes": 33,
+      "unreachable_cells_set_sentinel": 96706
     }
   ]
 }
