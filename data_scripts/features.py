@@ -35,14 +35,21 @@ import argparse
 import glob
 import logging
 import os
+import sys
 from datetime import datetime
+from pathlib import Path
 
 import numpy as np
 
-WINDOW = 5                 # local wall context is 5x5
-HALF = WINDOW // 2         # 2 cells of padding on each side
-N_FEATURES = 2 + 2 + WINDOW * WINDOW  # coords(2) + goal offsets(2) + walls(25) = 29
-SPLITS = {"train": 0.70, "val": 0.15, "test": 0.15}
+# Allow running this script directly from the repository root.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from src.features import (  # noqa: E402
+    N_FEATURES,
+    SPLITS,
+    WINDOW,
+    build_features_for_maze,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -50,52 +57,6 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
 )
 log = logging.getLogger("features")
-
-
-def build_features_for_maze(grid, goal, h_star):
-    """Return (X, y) for all reachable free cells of a single maze.
-
-    grid   : (N, N) uint8, 0 = free, 1 = wall
-    goal   : (2,) int, (row, col) of the goal cell
-    h_star : (N, N) float32, exact cost to goal; -1.0 marks invalid cells
-    """
-    n = grid.shape[0]
-
-    # Coordinate grids: x = column index, y = row index (0 .. N-1).
-    ys, xs = np.mgrid[0:n, 0:n].astype(np.float32)
-
-    # 1) Normalised cell coordinates -> [0, 1].
-    coord_x = (xs / n).astype(np.float32)
-    coord_y = (ys / n).astype(np.float32)
-
-    # 2) Goal-relative offsets scaled to (-1, 1).
-    goal_r, goal_c = int(goal[0]), int(goal[1])
-    off_x = ((xs - goal_c) / n).astype(np.float32)
-    off_y = ((ys - goal_r) / n).astype(np.float32)
-
-    # 3) Local 5x5 wall window, padded with 1 (border treated as wall).
-    padded = np.pad(grid, HALF, mode="constant", constant_values=1)
-    # sliding_window_view -> (N, N, 5, 5) then flatten the window to 25 features.
-    windows = np.lib.stride_tricks.sliding_window_view(padded, (WINDOW, WINDOW))
-    wall_feats = windows.reshape(n, n, WINDOW * WINDOW).astype(np.float32)
-
-    # Assemble the full feature tensor: (N, N, 29).
-    feats = np.concatenate(
-        [
-            coord_x[..., None],
-            coord_y[..., None],
-            off_x[..., None],
-            off_y[..., None],
-            wall_feats,
-        ],
-        axis=-1,
-    )
-
-    # Keep only reachable free cells (h*(n) >= 0 marks a valid target).
-    mask = h_star >= 0.0
-    x = feats[mask]                 # (M, 29)
-    y = (h_star[mask] / n).astype(np.float32)  # (M,) normalised target
-    return x, y
 
 
 def main():
