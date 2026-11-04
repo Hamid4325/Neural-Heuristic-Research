@@ -209,14 +209,19 @@ same A$^\ast$ implementation, tie-breaking rule, and maze set are used for
 Manhattan, oracle, and neural modes.
 
 \subsection{Reproducibility}
-The architecture diagram and model tests are reproduced with:
+The architecture diagram, model tests, and admissibility audit are reproduced
+with:
 \begin{verbatim}
 python scripts/make_architecture_figure.py
 python -m pytest tests/test_model.py tests/test_features.py \
-    tests/test_heuristics.py -q
+    tests/test_heuristics.py tests/test_admissibility.py -q
+python scripts/analyze_admissibility.py \
+    --checkpoint models/neural_heuristic_seed42.pt
 \end{verbatim}
-The checkpoint is loaded on CPU with \texttt{torch.load(path,
-map_location="cpu")}. Because recent PyTorch versions default to
-\texttt{weights\_only=True}, the checkpoint contains only tensors and primitive
-Python types (\texttt{list[float]} bin edges rather than NumPy scalars), so it
-loads without disabling the safe loader.
+The audit writes \texttt{results/admissibility/admissibility.csv},
+\texttt{results/admissibility/admissibility\_summary.json}, and
+\texttt{figures/admissibility\_cdf.png}. The checkpoint is loaded on CPU with
+\texttt{torch.load(path, map\_location="cpu")}. Because recent PyTorch versions
+default to \texttt{weights\_only=True}, the checkpoint contains only tensors and
+primitive Python types (\texttt{list[float]} bin edges rather than NumPy
+scalars), so it loads without disabling the safe loader.
