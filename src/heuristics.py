@@ -99,6 +99,10 @@ class NeuralHeuristic:
 
         self._predicted_cells = self._predict_all()
 
+    def predictions(self) -> np.ndarray:
+        """Return a copy of the cached raw cost field in cell units."""
+        return self._predicted_cells.copy()
+
     def _predict_all(self) -> np.ndarray:
         features = features_for_grid(self.grid, self.goal).reshape(-1, N_FEATURES)
 

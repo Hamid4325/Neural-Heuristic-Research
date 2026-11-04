@@ -64,6 +64,19 @@ def test_neural_predictions_are_finite_and_non_negative(tmp_path) -> None:
             assert value >= 0.0
 
 
+def test_predictions_exposes_cached_grid(tmp_path) -> None:
+    grid = np.zeros((6, 6), dtype=np.uint8)
+    checkpoint = _make_checkpoint(tmp_path)
+    heuristic = NeuralHeuristic(str(checkpoint), grid, (5, 5))
+
+    predictions = heuristic.predictions()
+
+    assert predictions.shape == grid.shape
+    assert np.isfinite(predictions).all()
+    predictions[0, 0] = -1.0
+    assert heuristic.predictions()[0, 0] >= 0.0
+
+
 def test_neural_scaled_mode(tmp_path) -> None:
     grid = np.zeros((6, 6), dtype=np.uint8)
     checkpoint = _make_checkpoint(tmp_path)
