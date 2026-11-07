@@ -30,3 +30,5 @@ models/
 .DS_Store
 .vscode/
 .idea/
+
+results/tuning_quick/
