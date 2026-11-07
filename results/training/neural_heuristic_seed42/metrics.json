@@ -1,0 +1,14 @@
+{
+  "checkpoint": "models/neural_heuristic_seed42.pt",
+  "run_dir": "results\\training\\neural_heuristic_seed42",
+  "best_epoch": 1,
+  "best_val_mae": 0.28855761751684034,
+  "best_val_bin_accuracy": 0.12,
+  "best_val_macro_f1": 0.045012710335291556,
+  "epochs_run": 1,
+  "stopped_early": false,
+  "n_params": 107787,
+  "train_seconds": 3.085438600013731,
+  "seed": 42,
+  "git_commit": "83824ce5b4d0f279e9f674998a186dc16d59e768"
+}

@@ -1,0 +1,45 @@
+data:
+  cleaned_dir: data/cleaned
+  processed_dir: data/processed
+  manifest_path: data/processed/split_manifest.json
+  manifest_copy_path: results/manifests/split_manifest.json
+  split_seed: 42
+model:
+  input_dim: 29
+  hidden_dims:
+  - 256
+  - 256
+  - 128
+  dropout: 0.1
+  activation: relu
+  n_bins: 10
+train:
+  seed: 42
+  epochs: 1
+  batch_size: 1024
+  learning_rate: 0.0003
+  weight_decay: 1.0e-05
+  reg_loss: smooth_l1
+  smooth_l1_beta: 0.1
+  lambda_aux: 0.1
+  grad_clip: 1.0
+  patience: 5
+  lr_factor: 0.5
+  lr_patience: 2
+  max_train_cells_per_epoch: 20000
+  max_val_cells: 5000
+  target_transform: standardised
+  bin_strategy: quantile
+  models_dir: models
+  results_dir: results
+eval:
+  split: test
+  alphas:
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  - 1.0
+  batch_size: 8192
+  results_dir: results
+  figures_dir: figures
