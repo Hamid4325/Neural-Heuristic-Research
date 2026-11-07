@@ -9,6 +9,9 @@ import logging
 import os
 import sys
 
+# Ensure repository root is on sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from src.evaluate import iter_split_mazes, run_search_evaluation
 from src.search import ManhattanHeuristic, OracleHeuristic, ZeroHeuristic
 
