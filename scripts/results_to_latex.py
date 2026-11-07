@@ -188,11 +188,11 @@ def generate_bias_table(bias_csv_path: str, out_tex_path: str):
     for _, row in df.iterrows():
         subgroup = str(row.get("subgroup", ""))
         value = str(row.get("value", ""))
-        mae = f"{float(row.get('mae_cells', 0)):.2f}"
-        rmse = f"{float(row.get('rmse_cells', 0)):.2f}"
-        signed = f"{float(row.get('mean_signed_error_cells', 0)):.2f}"
-        viol = f"{float(row.get('violation_rate', 0)) * 100:.1f}\\%"
-        red = f"{float(row.get('node_reduction_vs_manhattan', 0)) * 100:.1f}\\%"
+        mae = f"{float(row.get('mae_cells', 0)):.2f}" if pd.notna(row.get('mae_cells')) else "---"
+        rmse = f"{float(row.get('rmse_cells', 0)):.2f}" if pd.notna(row.get('rmse_cells')) else "---"
+        signed = f"{float(row.get('mean_signed_error_cells', 0)):.2f}" if pd.notna(row.get('mean_signed_error_cells')) else "---"
+        viol = f"{float(row.get('violation_rate', 0)) * 100:.1f}\\%" if pd.notna(row.get('violation_rate')) else "---"
+        red = f"{float(row.get('node_reduction_vs_manhattan', 0)) * 100:.1f}\\%" if pd.notna(row.get('node_reduction_vs_manhattan')) else "---"
         rows.append(f"{subgroup} & {value} & {mae} & {rmse} & {signed} & {viol} & {red} \\\\")
 
     rows_str = "\n".join(rows)
