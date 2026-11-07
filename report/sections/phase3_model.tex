@@ -1,29 +1,227 @@
-% Phase 3: Model Architecture
-% Lead: Muhammad Hamid Abad
+% ===========================================================================
+\section{Phase 3: Neural Heuristic Model}
+\label{sec:phase3_model}
+% ===========================================================================
 
-\section{Phase 3: Model Architecture and Formulation}
+\subsection{Problem formulation}
+A$^\ast$ expands nodes in order of
+\begin{equation}
+  f(n) = g(n) + h(n),
+\end{equation}
+where $g(n)$ is the exact cost from the start to node $n$ and $h(n)$ estimates
+the remaining cost to the goal. On a four-connected grid with unit move cost,
+the Manhattan distance
+\begin{equation}
+  d_M(n) = |r_n-r_{\text{goal}}| + |c_n-c_{\text{goal}}|
+\end{equation}
+is admissible: every move changes the Manhattan distance by at most one, so no
+path can be shorter than $d_M(n)$. It is, however, blind to obstacles. The goal
+of this phase is to learn a function $h_\theta(n)$ that approximates the exact
+cost-to-goal $h^\ast(n)$ and therefore prunes more of the search space than
+Manhattan distance while remaining cheap to evaluate inside A$^\ast$.
 
-\subsection{Multi-Task Architecture Specification}
-To satisfy both continuous distance regression and the auxiliary classification requirement,
-we design a multi-task feed-forward neural architecture with 29-dimensional inputs:
-\begin{itemize}
-    \item \textbf{Input Layer}: 29 inputs comprising normalized coordinates $(x/N, y/N)$, goal-relative offsets $(dx/N, dy/N)$, and flattened $5 \times 5$ local obstacle window context.
-    \item \textbf{Backbone Hidden Layers}: Three fully connected dense layers with dimensions $256 \to 256 \to 128$, equipped with ReLU non-linearities and dropout regularization ($p=0.10$).
-    \item \textbf{Continuous Regression Head}: Linear output $(128 \to 1)$ predicting standardized distance $h^\ast/N$.
-    \item \textbf{Auxiliary 10-Bin Classification Head}: Linear output $(128 \to 10)$ emitting unnormalized logits over distance deciles.
-\end{itemize}
+We formulate the task as supervised regression over individual grid cells. For
+a maze of side length $N$, the regression target is the normalised cost
+\begin{equation}
+  y(n) = \frac{h^\ast(n)}{N},
+\end{equation}
+computed for every reachable free cell by a single Dijkstra search from the
+goal. Normalising by $N$ keeps the target scale comparable across the five grid
+sizes while preserving the relative difficulty of detours.
+
+\subsection{Framework choice}
+The model is implemented in PyTorch and trained on CPU. PyTorch provides the
+automatic differentiation, checkpointing, and batched inference required for
+this project without requiring a GPU. The model is deliberately small: it must
+be evaluated for every cell of a maze at search time, so inference cost matters
+as much as validation accuracy. A feed-forward MLP is sufficient because the
+input is a fixed-length per-cell feature vector, not a variable-length sequence
+or image that would justify a convolutional or recurrent architecture.
+
+\subsection{Architecture}
+Figure~\ref{fig:architecture} shows the architecture. A shared three-layer
+trunk maps the 29-dimensional input to a 128-dimensional representation. Two
+heads then branch from this representation: a linear regression head that
+predicts the standardised cost-to-goal, and a 10-way classification head that
+predicts a distance bin. The auxiliary bin head gives the model a coarse,
+ordinal view of the cost and supplies the precision, recall, F1, and AUC-ROC
+metrics required by the rubric, while the regression head supplies the scalar
+value used by A$^\ast$.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.88\textwidth]{figures/architecture.png}
-    \caption{Multi-task neural heuristic network architecture with shared representation backbone.}
-    \label{fig:model_architecture}
+  \centering
+  \includegraphics[width=\textwidth]{architecture.png}
+  \caption{Architecture of the neural heuristic. The shared trunk processes a
+  29-dimensional per-cell feature vector. The regression head produces the
+  scalar cost used by A$^\ast$; the auxiliary head predicts a distance bin.}
+  \label{fig:architecture}
 \end{figure}
 
-\subsection{Heuristic Operational Modes}
-During online graph search, predictions $\hat{h}_\theta(n)$ can be applied in three modes:
+\begin{table}[H]
+  \centering
+  \caption{Layer configuration and parameter counts. All linear layers are
+  followed by ReLU activations; dropout is applied only in the trunk.}
+  \label{tab:model_layers}
+  \begin{tabular}{llrr}
+    \toprule
+    Component & Configuration & Output shape & Parameters \\
+    \midrule
+    Input               & 29 features                       & $(B, 29)$  & -- \\
+    Trunk layer 1       & Linear $29\to256$, ReLU, dropout  & $(B, 256)$ & 7{,}680 \\
+    Trunk layer 2       & Linear $256\to256$, ReLU, dropout & $(B, 256)$ & 65{,}792 \\
+    Trunk layer 3       & Linear $256\to128$, ReLU          & $(B, 128)$ & 32{,}896 \\
+    Regression head     & Linear $128\to1$                  & $(B, 1)$   & 129 \\
+    Distance-bin head   & Linear $128\to10$                 & $(B, 10)$  & 1{,}290 \\
+    \midrule
+    \textbf{Total}      &                                   &            & \textbf{107{,}787} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The forward pass returns a tuple \texttt{(y\_pred, bin\_logits)}. The regression
+output is a single scalar per cell, and the bin head returns ten logits. Dropout
+with probability $0.1$ is active during training and disabled at inference, so
+predictions are deterministic for a fixed checkpoint.
+
+\subsection{Feature representation}
+Each cell is represented by the same 29 features used by the data pipeline:
 \begin{enumerate}
-    \item \textbf{Raw}: Non-negatively clamped prediction $\max(0, \hat{h}_\theta(n))$.
-    \item \textbf{Scaled}: Multiplied by scaling discount parameter $\alpha \in [0.6, 1.0]$ to enforce conservative admissibility.
-    \item \textbf{Clipped Manhattan}: Upper-bounded by admissible Manhattan distance $\min(\alpha \hat{h}_\theta(n), h_{\text{man}}(n))$, ensuring provable admissibility and guaranteed path optimality.
+  \item the normalised coordinates $(x/N,\,y/N)$ (2 features);
+  \item the goal-relative offsets $(\Delta x/N,\,\Delta y/N)$ (2 features);
+  \item a $5\times5$ binary wall window centred on the cell, flattened to 25
+  features and padded with wall values outside the grid.
 \end{enumerate}
+The wall window gives the network local obstacle context, the goal offsets tell
+it where the target lies, and the coordinates give it global position. The same
+builder is used both when generating training data and when constructing
+search-time inputs, which removes the risk of train--inference feature skew.
+The centre of the wall window is constant for emitted samples because only free
+cells are labelled; it is retained for a uniform representation.
+
+\subsection{Training objective and optimisation}
+Targets are standardised using the training-set mean $\mu$ and standard
+deviation $\sigma$:
+\begin{equation}
+  y_{\text{std}} = \frac{y-\mu}{\sigma}.
+\end{equation}
+The regression loss is SmoothL1 with $\beta=0.1$, chosen for robustness to the
+heavy tail of long detours. The full training objective is
+\begin{equation}
+  \mathcal{L}
+  = \operatorname{SmoothL1}_\beta(\hat{y}_{\text{std}}, y_{\text{std}})
+  + \lambda_{\text{aux}}\,\operatorname{CE}(\text{bin\_logits}, b),
+\end{equation}
+where $b$ is the distance bin of the target and $\lambda_{\text{aux}}$ balances
+the auxiliary classification loss. An optional asymmetric variant adds a
+one-sided penalty on overestimation:
+\begin{equation}
+  \mathcal{L}_{\text{asym}}
+  = \mathcal{L}
+  + \lambda_{\text{over}}\,\mathbb{E}\!\left[
+      \max(0,\ \hat{y}_{\text{std}} - y_{\text{std}} - m)^2
+    \right],
+\end{equation}
+with margin $m$. Overestimation is penalised because it can make A$^\ast$
+inadmissible and return a suboptimal path; underestimation only costs extra
+node expansions.
+
+Optimisation uses AdamW with a \texttt{ReduceLROnPlateau} scheduler driven by
+validation MAE, gradient clipping at $1.0$, and early stopping with patience
+five epochs. Dropout in the trunk provides additional regularisation. The best
+checkpoint stores the model state, model configuration, target mean and
+standard deviation, bin edges, training configuration, git commit, and seed, so
+that search-time inference reproduces the exact training-time scaling.
+
+\subsection{Target range and output activation}
+The target is not bounded by one. A path may have to detour around obstacles,
+so $h^\ast(n)$ can exceed the grid side length $N$; in the processed data the
+maximum observed normalised target is approximately $3.18$ (318 cells in a
+$100\times100$ maze). The earlier description of the target as lying in
+$[0,1]$ is therefore incorrect. The regression head consequently uses a
+\emph{linear} output with no sigmoid or other bounded activation. A sigmoid
+would saturate exactly on the difficult long-detour cases and would be unable
+to represent costs above $N$.
+
+At inference, the prediction is converted back to grid-cell units:
+\begin{equation}
+  \hat{h}(n) = \max\!\left(0,\ \hat{y}_{\text{std}}\,\sigma + \mu\right) N.
+\end{equation}
+The clamp enforces non-negativity without affecting valid targets. Empirically,
+the training split has $\mu\approx0.738$ and $\sigma\approx0.368$; these values
+are recomputed from the actual training run and stored in the checkpoint rather
+than hard-coded.
+
+\subsection{Admissibility and search-time safety}
+A learned heuristic can overestimate $h^\ast$ on some cells. Because Manhattan
+distance is a lower bound on the true cost in a four-connected maze, the
+following clipping mode is explicitly safe:
+\begin{equation}
+  h_{\text{clip}}(n) = \min\!\left(\alpha\,h_\theta(n),\ d_M(n)\right),
+  \qquad 0 \le \alpha \le 1.
+\end{equation}
+Since $d_M(n)\le h^\ast(n)$ for every cell, $h_{\text{clip}}(n)\le h^\ast(n)$,
+so this mode is admissible regardless of the network's prediction. The learned
+signal can still improve on Manhattan whenever $\alpha h_\theta(n)<d_M(n)$;
+otherwise the heuristic falls back smoothly to the classical bound.
+
+Table~\ref{tab:heuristic_modes} summarises the three modes exposed by the
+wrapper. The raw mode is the fastest and most aggressive; the scaled mode
+shrinks predictions by $\alpha$ to reduce overestimation; the clipped mode
+provides the admissibility guarantee above. Cells that are walls, outside the
+grid, or have non-finite predictions fall back to Manhattan distance, which
+keeps the search well-defined on the complete grid.
+
+\begin{table}[H]
+  \centering
+  \caption{Search-time heuristic modes. The clipped mode is admissible by
+  construction; the other modes are evaluated empirically.}
+  \label{tab:heuristic_modes}
+  \begin{tabular}{lll}
+    \toprule
+    Mode & Definition & Admissibility \\
+    \midrule
+    \texttt{raw}               & $h_\theta(n)$                          & not guaranteed \\
+    \texttt{scaled}            & $\alpha\,h_\theta(n)$                  & not guaranteed \\
+    \texttt{clipped\_manhattan}& $\min(\alpha h_\theta(n), d_M(n))$     & guaranteed \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The admissibility audit on the validation split measures the fraction of cells
+with $h_\theta(n)>h^\ast(n)+\epsilon$, the mean, 95th percentile, and maximum
+overestimation in cell units, and how these quantities change with $\alpha$ and
+with the clipped mode. The audit is paired with node-expansion measurements so
+that the report can quantify the efficiency cost of enforcing admissibility.
+
+\subsection{Search integration}
+\texttt{NeuralHeuristic} loads the checkpoint once, builds the 29-dimensional
+feature tensor for every cell of the maze once, and performs batched inference
+under \texttt{torch.no\_grad()} with a default batch size of 8192. The
+resulting cost field is cached as a two-dimensional array, so each heuristic
+call during A$^\ast$ is an $O(1)$ lookup followed by the selected mode and
+fallback logic. No feature construction or network forward pass occurs inside
+the search loop.
+
+The wrapper implements the same callable interface as
+\texttt{ManhattanHeuristic} and \texttt{OracleHeuristic}, so the search code is
+unchanged across heuristic families. This keeps the comparison controlled: the
+same A$^\ast$ implementation, tie-breaking rule, and maze set are used for
+Manhattan, oracle, and neural modes.
+
+\subsection{Reproducibility}
+The architecture diagram, model tests, and admissibility audit are reproduced
+with:
+\begin{verbatim}
+python scripts/make_architecture_figure.py
+python -m pytest tests/test_model.py tests/test_features.py \
+    tests/test_heuristics.py tests/test_admissibility.py -q
+python scripts/analyze_admissibility.py \
+    --checkpoint models/neural_heuristic_seed42.pt
+\end{verbatim}
+The audit writes \texttt{results/admissibility/admissibility.csv},
+\texttt{results/admissibility/admissibility\_summary.json}, and
+\texttt{figures/admissibility\_cdf.png}. The checkpoint is loaded on CPU with
+\texttt{torch.load(path, map\_location="cpu")}. Because recent PyTorch versions
+default to \texttt{weights\_only=True}, the checkpoint contains only tensors and
+primitive Python types (\texttt{list[float]} bin edges rather than NumPy
+scalars), so it loads without disabling the safe loader.
