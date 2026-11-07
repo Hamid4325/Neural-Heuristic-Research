@@ -1,0 +1,50 @@
+{
+  "dijkstra": {
+    "total_mazes": 282,
+    "solved_count": 282,
+    "success_rate": 1.0,
+    "mean_nodes_expanded": 2075.017730496454,
+    "median_nodes_expanded": 1484.5,
+    "std_nodes_expanded": 1960.4985642058004,
+    "mean_nodes_generated": 2114.599290780142,
+    "median_nodes_generated": 1526.5,
+    "mean_runtime_ms": 13.213917375902925,
+    "median_runtime_ms": 7.986699999491975,
+    "mean_optimality_ratio": 1.0,
+    "max_optimality_ratio": 1.0,
+    "mean_relative_node_reduction_vs_baseline": -17.56663869392036,
+    "median_relative_node_reduction_vs_baseline": -12.152631578947368
+  },
+  "manhattan": {
+    "total_mazes": 282,
+    "solved_count": 282,
+    "success_rate": 1.0,
+    "mean_nodes_expanded": 180.79432624113474,
+    "median_nodes_expanded": 92.0,
+    "std_nodes_expanded": 268.63438513267414,
+    "mean_nodes_generated": 285.7482269503546,
+    "median_nodes_generated": 164.5,
+    "mean_runtime_ms": 1.3679223404246743,
+    "median_runtime_ms": 0.7931999994070793,
+    "mean_optimality_ratio": 1.0,
+    "max_optimality_ratio": 1.0,
+    "mean_relative_node_reduction_vs_baseline": 0.0,
+    "median_relative_node_reduction_vs_baseline": 0.0
+  },
+  "oracle": {
+    "total_mazes": 282,
+    "solved_count": 282,
+    "success_rate": 1.0,
+    "mean_nodes_expanded": 52.776595744680854,
+    "median_nodes_expanded": 49.0,
+    "std_nodes_expanded": 29.502189216274946,
+    "mean_nodes_generated": 120.177304964539,
+    "median_nodes_generated": 110.0,
+    "mean_runtime_ms": 0.4681042552926317,
+    "median_runtime_ms": 0.38724999967598706,
+    "mean_optimality_ratio": 1.0,
+    "max_optimality_ratio": 1.0,
+    "mean_relative_node_reduction_vs_baseline": 0.41847955198362075,
+    "median_relative_node_reduction_vs_baseline": 0.4337979094076655
+  }
+}
