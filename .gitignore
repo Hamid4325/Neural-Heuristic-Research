@@ -10,8 +10,10 @@ __pycache__/
 venv/
 
 # Model files (for later deliverables)
+models/
 *.pt
 *.pth
+*.joblib
 
 # LaTeX build files (keep main.tex and the compiled PDF)
 *.aux

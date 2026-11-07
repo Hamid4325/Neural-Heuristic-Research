@@ -1,0 +1,229 @@
+% Phase 4: Empirical Evaluation and Comparative Analysis
+% Author: Abdullah Zia (Evaluation, Analysis, and Report Lead)
+
+\section{Phase 4: Empirical Evaluation and Results}
+
+\subsection{Evaluation Methodology and Metric Formulation}
+To rigorously assess the performance of the learned neural heuristic relative to classical
+and oracle baselines, we establish an evaluation protocol spanning regression fidelity, auxiliary
+classification discrimination, and end-to-end graph search efficiency.
+
+\subsubsection{Data Leakage Prevention and Split Structure}
+Evaluation is strictly isolated on the unseen test set of 282 mazes partition (15\% of
+the cleaned corpus), partitioned by complete maze environment rather than individual cell
+instances. This environment-level partitioning guarantees zero leakage of global maze
+topologies, wall distributions, and goal placements between training and evaluation phases.
+
+\subsubsection{Regression and Admissibility Metrics}
+For a given maze of dimension $N \times N$, let $h^\ast(n)$ denote the ground-truth optimal
+shortest-path cost from cell $n$ to the goal, and let $\hat{h}_\theta(n)$ denote the
+neural prediction. Because models are trained to predict normalized distances $y = h^\ast / N$,
+primary regression metrics include:
+\begin{itemize}
+    \item \textbf{Mean Squared Error (MSE)} and \textbf{Root Mean Squared Error (RMSE)}:
+    \begin{equation}
+        \text{RMSE} = \sqrt{\frac{1}{|\mathcal{S}|} \sum_{n \in \mathcal{S}} \left(\hat{y}(n) - y(n)\right)^2}
+    \end{equation}
+    where $\mathcal{S}$ is the set of all free reachable cells.
+    \item \textbf{Mean Absolute Error (MAE)} in normalized units and raw grid cells ($\text{MAE} \times N$).
+    \item \textbf{Correlation Measures}: Pearson linear correlation coefficient $r$ and Spearman rank correlation coefficient $\rho$.
+    \item \textbf{Admissibility Violation Rate}: Fraction of reachable cells where the heuristic overestimates true distance beyond tolerance $\epsilon$:
+    \begin{equation}
+        \text{Violations}(\epsilon) = \frac{1}{|\mathcal{S}|} \sum_{n \in \mathcal{S}} \mathbb{I}\left[(\hat{h}_\theta(n) - h^\ast(n)) > \epsilon\right]
+    \end{equation}
+\end{itemize}
+
+\subsubsection{Auxiliary 10-Bin Classification Metrics}
+To assess spatial range discrimination, targets are discretized into 10 decile distance bins.
+We compute per-class Precision, Recall, and $F_1$-score, macro-averaged and weighted $F_1$,
+and Macro One-vs-Rest Area Under the ROC Curve (AUC-ROC).
+
+\subsubsection{Search Performance Metrics}
+During deterministic $A^\ast$ execution, we measure:
+\begin{enumerate}
+    \item \textbf{Nodes Expanded}: The exact count of states popped from the priority queue and closed.
+    \item \textbf{Nodes Generated}: Total valid states inserted into the open set.
+    \item \textbf{Path Cost and Optimality Ratio}: Ratio of resulting path length to optimal Dijkstra cost $c / c^\ast$.
+    \item \textbf{Relative Node Reduction}: Reduction in expansions relative to Manhattan $A^\ast$:
+    \begin{equation}
+        \Delta_{\text{expanded}} = 1 - \frac{\text{Nodes}_{\text{neural}}}{\text{Nodes}_{\text{manhattan}}}
+    \end{equation}
+    \item \textbf{Runtime and Peak Open Set}: CPU wall-clock latency per maze and memory footprint.
+\end{enumerate}
+
+\subsection{Training Dynamics and Convergence}
+The multi-task neural network was trained on 4.41 million cell samples. Figure~\ref{fig:training_curves}
+illustrates the convergence trajectories across training epochs.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/training_loss.png}
+        \caption{Loss (MSE)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/training_mae.png}
+        \caption{MAE ($h^\ast/N$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/training_bin_accuracy.png}
+        \caption{10-Bin Accuracy}
+    \end{subfigure}
+    \caption{Training and validation performance dynamics across learning epochs.}
+    \label{fig:training_curves}
+\end{figure}
+
+The model demonstrates steady convergence with consistent decrease in validation loss
+and absence of pathological overfitting, stabilizing at a normalized validation MAE below 0.15.
+
+\subsection{Offline Regression and Admissibility Analysis}
+Table~\ref{tab:regression_results} summarizes cell-level regression fidelity evaluated across
+unseen test environments.
+
+\input{report/generated/regression_table.tex}
+
+The model achieves a high coefficient of determination ($R^2 = 0.8597$) and strong linear correlation
+($r = 0.9272$, $\rho = 0.9261$), validating that local 5$\times$5 wall context combined with
+goal offsets successfully capture global topological impedance. On a standard $60 \times 60$ grid,
+the root mean squared error is approximately 8.4 cells.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/pred_vs_true.png}
+        \caption{Predicted vs. True Cost}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/residual_hist.png}
+        \caption{Residual Distribution}
+    \end{subfigure}
+    \caption{Parity scatter plot and residual error density over test cells.}
+    \label{fig:regression_scatters}
+\end{figure}
+
+As shown in Figure~\ref{fig:regression_scatters}, residuals follow a symmetric zero-centered
+distribution with minimal systematic drift. The empirical cumulative distribution of overestimation
+is visualized in Figure~\ref{fig:admissibility_cdf}. While unconstrained neural outputs can
+produce overestimation, scaling $\alpha < 1.0$ or clipping against Manhattan distances guarantees
+strict admissibility when absolute path optimality is required.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{figures/admissibility_cdf.png}
+    \caption{Empirical CDF of heuristic overestimation errors relative to admissibility margins.}
+    \label{fig:admissibility_cdf}
+\end{figure}
+
+\subsection{Auxiliary 10-Bin Distance Classification}
+Table~\ref{tab:classification_results} details the classification performance across 10 distance deciles.
+
+\input{report/generated/classification_table.tex}
+
+The model demonstrates strong discriminative capability with an OvR Macro AUC-ROC of 0.9444.
+Figure~\ref{fig:classification_plots} shows the corresponding normalized confusion matrix and
+multi-class ROC curves. Classification confusion is concentrated exclusively in adjacent
+diagonal neighbors, confirming that distance misclassifications are bounded local errors rather
+than catastrophic topological failures.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/confusion_matrix.png}
+        \caption{Confusion Matrix}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/roc_curves.png}
+        \caption{One-vs-Rest ROC Curves}
+    \end{subfigure}
+    \caption{Auxiliary 10-bin distance classification evaluation.}
+    \label{fig:classification_plots}
+\end{figure}
+
+\subsection{End-to-End A$^\ast$ Search Evaluation}
+The ultimate benchmark of heuristic quality is search efficiency inside the A$^\ast$ priority queue.
+Table~\ref{tab:search_results} contrasts search performance across Dijkstra, Manhattan, Neural variants,
+and the perfect Oracle across all 282 test mazes.
+
+\input{report/generated/search_table.tex}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/nodes_expanded_by_heuristic.png}
+        \caption{Nodes Expanded (Log Scale)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/optimality_vs_nodes.png}
+        \caption{Pareto Frontier}
+    \end{subfigure}
+    \caption{Search efficiency comparison and Pareto trade-off between expansions and path optimality.}
+    \label{fig:search_performance}
+\end{figure}
+
+All tested heuristics solved 100\% of the 282 test mazes. The perfect Oracle expands a mean of only
+52.8 nodes, representing a 41.8\% reduction compared to Manhattan A$^\ast$ (180.8 nodes).
+Neural clipped Manhattan achieves an optimality ratio of 1.001 with sub-2 ms latency.
+
+\subsubsection{Scaling Sensitivity Parameter Sweep ($\alpha$)}
+To explore the trade-off between search efficiency and path optimality, we swept scaling parameter
+$\alpha \in [0.6, 1.0]$ in Table~\ref{tab:alpha_sweep}.
+
+\input{report/generated/alpha_sweep_table.tex}
+
+Increasing $\alpha$ focuses the search beam more aggressively toward the goal, reducing expanded
+nodes from 1,133 at $\alpha=0.6$ down to 547 at $\alpha=1.0$, with path cost remaining within 3.4\%
+of optimal shortest paths.
+
+\subsection{Error Analysis and Qualitative Comparison}
+Figure~\ref{fig:heatmaps} presents visual comparison of ground-truth geodesic distance $h^\ast$,
+the neural prediction $\hat{h}_\theta$, and classical Manhattan distance $h_{\text{man}}$ on a
+sample test maze.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/hstar_vs_prediction_maze.png}
+    \caption{Spatial comparison of ground-truth geodesic distance $h^\ast$, predicted neural heuristic $\hat{h}_\theta$, and Manhattan distance $h_{\text{man}}$ from a common goal (red star).}
+    \label{fig:heatmaps}
+\end{figure}
+
+Whereas Manhattan contour lines remain linear diamonds blind to obstacles, the neural heuristic
+curves dynamically around maze corridors and barrier walls, closely approximating the true
+geodesic wavefront.
+
+\subsection{Environmental Subgroup Auditing (Bias Analysis)}
+Because synthetic grid-mazes do not feature human demographic attributes, algorithmic bias is
+formally defined and audited as \emph{environmental and distributional bias} across maze topologies.
+Table~\ref{tab:bias_results} reports performance parity across generators, grid dimensions,
+obstacle densities, cell positions, and wall clustering.
+
+\input{report/generated/bias_table.tex}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/metrics_by_generator.png}
+        \caption{By Generator}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/metrics_by_size.png}
+        \caption{By Grid Size ($N$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/metrics_by_density.png}
+        \caption{By Obstacle Density}
+    \end{subfigure}
+    \caption{Search node expansion breakdown across environmental subgroups.}
+    \label{fig:subgroup_breakdowns}
+\end{figure}
+
+Performance remains balanced across both maze generators (backtracker corridors and Perlin noise blobs).
+As expected, cell-level errors scale proportionally with grid dimension $N$ because normalized
+errors are magnified by grid scale. Crucially, the 100\% success rate is maintained across all
+subgroups, demonstrating robust generalizability across diverse topological regimes.

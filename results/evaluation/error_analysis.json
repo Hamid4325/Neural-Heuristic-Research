@@ -1,0 +1,316 @@
+{
+  "n_samples": 50000,
+  "mean_residual": -0.00971208419650793,
+  "std_residual": 0.14097820222377777,
+  "p95_abs_residual": 0.23154155910015106,
+  "decile_breakdown": [
+    {
+      "decile": 0,
+      "range_min": 0.0,
+      "range_max": 0.2666666805744171,
+      "count": 5001,
+      "mae": 0.03718028590083122,
+      "rmse": 0.050872012972831726,
+      "mean_signed_error": 0.021434763446450233
+    },
+    {
+      "decile": 1,
+      "range_min": 0.2666666805744171,
+      "range_max": 0.4000000059604645,
+      "count": 5444,
+      "mae": 0.03876879811286926,
+      "rmse": 0.05094088986515999,
+      "mean_signed_error": 0.013149045407772064
+    },
+    {
+      "decile": 2,
+      "range_min": 0.4000000059604645,
+      "range_max": 0.5099999904632568,
+      "count": 5387,
+      "mae": 0.04602247476577759,
+      "rmse": 0.06116070970892906,
+      "mean_signed_error": 0.014109114184975624
+    },
+    {
+      "decile": 3,
+      "range_min": 0.5099999904632568,
+      "range_max": 0.612500011920929,
+      "count": 5143,
+      "mae": 0.05303046479821205,
+      "rmse": 0.07211151719093323,
+      "mean_signed_error": 0.014994040131568909
+    },
+    {
+      "decile": 4,
+      "range_min": 0.612500011920929,
+      "range_max": 0.7124999761581421,
+      "count": 5163,
+      "mae": 0.058196477591991425,
+      "rmse": 0.07955443859100342,
+      "mean_signed_error": 0.016997389495372772
+    },
+    {
+      "decile": 5,
+      "range_min": 0.7124999761581421,
+      "range_max": 0.8199999928474426,
+      "count": 5216,
+      "mae": 0.0646899864077568,
+      "rmse": 0.09044574946165085,
+      "mean_signed_error": 0.018917832523584366
+    },
+    {
+      "decile": 6,
+      "range_min": 0.8199999928474426,
+      "range_max": 0.9333333373069763,
+      "count": 5159,
+      "mae": 0.06903616338968277,
+      "rmse": 0.10126491636037827,
+      "mean_signed_error": 0.012175668962299824
+    },
+    {
+      "decile": 7,
+      "range_min": 0.9333333373069763,
+      "range_max": 1.0625,
+      "count": 5043,
+      "mae": 0.07489916682243347,
+      "rmse": 0.11749260872602463,
+      "mean_signed_error": -0.002972878748551011
+    },
+    {
+      "decile": 8,
+      "range_min": 1.0625,
+      "range_max": 1.25,
+      "count": 5283,
+      "mae": 0.08879059553146362,
+      "rmse": 0.14881493151187897,
+      "mean_signed_error": -0.0354146771132946
+    },
+    {
+      "decile": 9,
+      "range_min": 1.25,
+      "range_max": 2.9200000762939453,
+      "count": 5104,
+      "mae": 0.1985836774110794,
+      "rmse": 0.3507801592350006,
+      "mean_signed_error": -0.1685548573732376
+    }
+  ],
+  "wall_density_breakdown": [
+    {
+      "wall_count": 0,
+      "count": 12221,
+      "mae": 0.07173345237970352,
+      "rmse": 0.15408313274383545
+    },
+    {
+      "wall_count": 1,
+      "count": 3510,
+      "mae": 0.06195707991719246,
+      "rmse": 0.14471659064292908
+    },
+    {
+      "wall_count": 2,
+      "count": 4123,
+      "mae": 0.05650294944643974,
+      "rmse": 0.11841364204883575
+    },
+    {
+      "wall_count": 3,
+      "count": 4058,
+      "mae": 0.058274880051612854,
+      "rmse": 0.12290653586387634
+    },
+    {
+      "wall_count": 4,
+      "count": 3774,
+      "mae": 0.05817773938179016,
+      "rmse": 0.12000156939029694
+    },
+    {
+      "wall_count": 5,
+      "count": 4156,
+      "mae": 0.0644984319806099,
+      "rmse": 0.12661536037921906
+    },
+    {
+      "wall_count": 6,
+      "count": 3325,
+      "mae": 0.06887324154376984,
+      "rmse": 0.12471643090248108
+    },
+    {
+      "wall_count": 7,
+      "count": 3022,
+      "mae": 0.07723015546798706,
+      "rmse": 0.13531549274921417
+    },
+    {
+      "wall_count": 8,
+      "count": 2542,
+      "mae": 0.08646668493747711,
+      "rmse": 0.13965268433094025
+    },
+    {
+      "wall_count": 9,
+      "count": 2149,
+      "mae": 0.09420803189277649,
+      "rmse": 0.15252673625946045
+    },
+    {
+      "wall_count": 10,
+      "count": 2581,
+      "mae": 0.09060057997703552,
+      "rmse": 0.15086203813552856
+    },
+    {
+      "wall_count": 11,
+      "count": 1515,
+      "mae": 0.09586015343666077,
+      "rmse": 0.15023468434810638
+    },
+    {
+      "wall_count": 12,
+      "count": 1088,
+      "mae": 0.10222381353378296,
+      "rmse": 0.16636380553245544
+    },
+    {
+      "wall_count": 13,
+      "count": 775,
+      "mae": 0.10264717042446136,
+      "rmse": 0.16095319390296936
+    },
+    {
+      "wall_count": 14,
+      "count": 482,
+      "mae": 0.11723154783248901,
+      "rmse": 0.17618629336357117
+    },
+    {
+      "wall_count": 15,
+      "count": 313,
+      "mae": 0.12618768215179443,
+      "rmse": 0.20539942383766174
+    },
+    {
+      "wall_count": 16,
+      "count": 176,
+      "mae": 0.1347818523645401,
+      "rmse": 0.21682575345039368
+    },
+    {
+      "wall_count": 17,
+      "count": 96,
+      "mae": 0.12604083120822906,
+      "rmse": 0.17869548499584198
+    },
+    {
+      "wall_count": 18,
+      "count": 57,
+      "mae": 0.16009920835494995,
+      "rmse": 0.2281714826822281
+    }
+  ],
+  "search_worst_regressions": [
+    {
+      "maze_id": 32,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 10,
+      "manhattan_expanded": 186.0,
+      "neural_expanded": 3547.0,
+      "expansion_increase": 3361.0,
+      "optimality_ratio": 1.0149253731343284
+    },
+    {
+      "maze_id": 13,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 10,
+      "manhattan_expanded": 338.0,
+      "neural_expanded": 3263.0,
+      "expansion_increase": 2925.0,
+      "optimality_ratio": 1.0
+    },
+    {
+      "maze_id": 41,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 10,
+      "manhattan_expanded": 124.0,
+      "neural_expanded": 2687.0,
+      "expansion_increase": 2563.0,
+      "optimality_ratio": 1.018348623853211
+    },
+    {
+      "maze_id": 65,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 20,
+      "manhattan_expanded": 256.0,
+      "neural_expanded": 2802.0,
+      "expansion_increase": 2546.0,
+      "optimality_ratio": 1.0476190476190477
+    },
+    {
+      "maze_id": 1008,
+      "generator": "perlin",
+      "size": 100,
+      "density": 10,
+      "manhattan_expanded": 451.0,
+      "neural_expanded": 2888.0,
+      "expansion_increase": 2437.0,
+      "optimality_ratio": 1.0
+    },
+    {
+      "maze_id": 1007,
+      "generator": "perlin",
+      "size": 100,
+      "density": 10,
+      "manhattan_expanded": 307.0,
+      "neural_expanded": 2726.0,
+      "expansion_increase": 2419.0,
+      "optimality_ratio": 1.0
+    },
+    {
+      "maze_id": 93,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 20,
+      "manhattan_expanded": 637.0,
+      "neural_expanded": 2555.0,
+      "expansion_increase": 1918.0,
+      "optimality_ratio": 1.1162790697674418
+    },
+    {
+      "maze_id": 49,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 10,
+      "manhattan_expanded": 96.0,
+      "neural_expanded": 1957.0,
+      "expansion_increase": 1861.0,
+      "optimality_ratio": 1.1363636363636365
+    },
+    {
+      "maze_id": 34,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 10,
+      "manhattan_expanded": 134.0,
+      "neural_expanded": 1993.0,
+      "expansion_increase": 1859.0,
+      "optimality_ratio": 1.0
+    },
+    {
+      "maze_id": 76,
+      "generator": "backtracker",
+      "size": 100,
+      "density": 20,
+      "manhattan_expanded": 378.0,
+      "neural_expanded": 2086.0,
+      "expansion_increase": 1708.0,
+      "optimality_ratio": 1.155844155844156
+    }
+  ]
+}

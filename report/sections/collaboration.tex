@@ -1,0 +1,34 @@
+% Collaboration and Contributions Section
+% Author: Abdullah Zia (Evaluation, Analysis, and Report Lead)
+
+\section{Team Collaboration and Version Control}
+
+\subsection{Git Workflow and Policy}
+All development strictly adheres to branch isolation, CLI-only version control, and peer-reviewed
+pull requests. Work is coordinated across dedicated feature branches originating from the integration
+branch \texttt{deliverable-2}:
+\begin{itemize}
+    \item \texttt{d2/zia-eval} (Lead: Abdullah Zia): Search algorithms, metrics framework, evaluation harnesses, fallback neural models, bias/error analysis, and report synthesis.
+    \item \texttt{d2/saeed-training} (Lead: Muhammad Abdullah Saeed): Data manifest generation, PyTorch datasets and data loaders, multi-stage hyperparameter tuning, model training, and Hugging Face artifact release.
+    \item \texttt{d2/hamid-model} (Lead: Muhammad Hamid Abad): Neural architecture implementation, feature pipeline refactoring, search heuristic wrappers, ablation studies, and architectural visualizations.
+\end{itemize}
+
+\subsection{Contribution Breakdown}
+Individual contributions are auditable via granular Git commit histories and PR reviews.
+A summary of primary ownership is presented below:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lp{4.2cm}p{4.2cm}l}
+\toprule
+\textbf{Member} & \textbf{Core Modules} & \textbf{Key Responsibilities} & \textbf{Git Commits} \\
+\midrule
+Abdullah Zia & \texttt{src/search.py}, \texttt{src/metrics.py}, \texttt{src/evaluate.py}, \texttt{src/analysis.py} & Evaluation harness, baseline runs, fallback models, error \& bias analysis, LaTeX generation & \texttt{d2/zia-eval} \\
+Muhammad Abdullah Saeed & \texttt{src/data.py}, \texttt{src/train.py}, \texttt{src/tune.py}, \texttt{src/config.py} & Dataset loaders, split manifests, training loop, hyperparameter tuning, checkpointing & \texttt{d2/saeed-training} \\
+Muhammad Hamid Abad & \texttt{src/model.py}, \texttt{src/features.py}, \texttt{src/heuristics.py} & Model architecture, feature refactoring, heuristic wrappers, ablations, diagram & \texttt{d2/hamid-model} \\
+\bottomrule
+\end{tabular}
+\caption{Detailed member contribution matrix for Deliverable 2.}
+\label{tab:contributions}
+\end{table}
