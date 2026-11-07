@@ -23,7 +23,7 @@
 \setlist{nosep}
 
 \title{\textbf{Neural-Guided Heuristics versus Classical Pathfinding\\ in Dynamic Grid-Mazes}\\[4pt]
-\large Deliverable 1 --- Problem Definition \& Data Foundations}
+\large Deliverable 2 --- Model Architecture \& Empirical Evaluation}
 \author{
   Muhammad Abdullah Saeed \and
   Muhammad Hamid Abad \and
@@ -36,15 +36,16 @@
 
 \begin{abstract}
 \noindent
-This report establishes the problem definition and the data foundations for a study
-comparing classical A$^\ast$ search (using the Manhattan-distance heuristic) with a
-neural-network-guided A$^\ast$ in procedurally generated grid mazes. We motivate why a
-learned heuristic is preferable to hand-designed rules, describe a complete and
-reproducible data pipeline---generation, ground-truth labelling with Dijkstra's
-algorithm, cleaning, and feature engineering---and present an exploratory data
-analysis of the resulting dataset of 2{,}000 generated mazes (1{,}876 after cleaning).
-The dataset, code, and figures contained here constitute the data-centric foundation on
-which the later training and evaluation phases of the project are built.
+This report presents the architecture formulation, optimization strategy, and rigorous
+empirical evaluation for a study comparing classical A$^\ast$ search (Manhattan-distance baseline)
+with a neural-network-guided A$^\ast$ on complex procedurally generated grid mazes.
+We introduce a multi-task neural network operating on 29 local and global spatial features
+to jointly regress continuous geodesic distances ($h^\ast/N$) and predict auxiliary 10-bin distance
+deciles. Evaluated across 282 unseen test environments against Dijkstra and exact Oracle bounds,
+the neural heuristic achieves strong predictive fidelity ($R^2 = 0.8597$, OvR Macro AUC-ROC = $0.9444$).
+Integrated into search with Manhattan clipping, the neural heuristic achieves a 100\% problem
+solving rate, an optimality ratio of $1.001$, and sub-2 millisecond search latency per maze,
+providing empirical validation of learned heuristic pathfinding on obstructed topologies.
 \end{abstract}
 
 % ===========================================================================
@@ -267,8 +268,11 @@ is constructed (\texttt{features.py}) as follows:
 \end{enumerate}
 
 The regression target is the normalised ground-truth cost
-$y(n) = h^\ast(n)/N \in [0,1]$, which keeps the target scale comparable across grid
-sizes. Cells with the $-1$ sentinel (walls / unreachable) are never emitted as samples.
+$y(n) = h^\ast(n)/N \in [0, \approx 3.18]$ (corrected from the preliminary $[0,1]$ theoretical
+estimate of Deliverable 1, since detours winding through dense obstacles and dead-end corridors
+frequently exceed the direct grid dimension, reaching up to $3.18 N$). Normalizing by $N$ maintains
+consistent target scale across variable grid dimensions $20 \le N \le 100$.
+Cells with the $-1$ sentinel (walls / unreachable) are never emitted as samples.
 
 \subsection{Train / Validation / Test Split}
 To prevent leakage, the split is performed \emph{by maze}, not by cell: all cells of a
@@ -413,37 +417,47 @@ representation.
 \end{figure}
 
 % ===========================================================================
+% Deliverable 2 Phases
+% ===========================================================================
+\input{report/sections/phase3_model.tex}
+\input{report/sections/phase3_training.tex}
+\input{report/sections/phase4_evaluation.tex}
+\input{report/sections/collaboration.tex}
+
+% ===========================================================================
 \section{Reproducibility}
 % ===========================================================================
 The full pipeline is deterministic given seed $42$ and runs in the following order:
 
 \begin{verbatim}
+# Phase 2: Data Pipeline
 python data_scripts/generate_mazes.py     # 2000 mazes  -> data/raw/
 python data_scripts/compute_labels.py     # Dijkstra h* -> data/labeled/
 python data_scripts/clean_data.py         # cleaning    -> data/cleaned/
 python data_scripts/features.py           # features    -> data/processed/
-python data_scripts/eda.py                # figures     -> figures/
+
+# Phase 3 & 4: Training & Evaluation
+python scripts/train_fallback_models.py   # Models      -> models/
+python scripts/run_baselines.py           # Baselines   -> results/evaluation/
+python scripts/run_evaluation.py          # Benchmarks  -> results/evaluation/
+python scripts/make_figures.py            # Figures     -> figures/
+python scripts/results_to_latex.py        # Tables      -> report/generated/
 \end{verbatim}
 
-Generated data is written under \texttt{data/} and excluded from version control via
-\texttt{.gitignore}; only scripts, logs, and figures are tracked.
+Generated data and model weights are excluded from version control via
+\texttt{.gitignore}; all code, test suites, figures, and report tables are tracked.
 
 % ===========================================================================
-\section{Conclusion and Future Work}
+\section{Conclusion}
 % ===========================================================================
-Deliverable~1 is complete on both fronts. Phase~1 articulates the problem, its
-stakeholders, and a concrete argument for why learning the heuristic is the right
-approach. Phase~2 delivers a fully reproducible, data-centric pipeline that produces
-2{,}000 procedurally generated mazes, exact Dijkstra ground-truth labels, a cleaned
-dataset of 1{,}876 mazes, a 29-dimensional per-cell feature representation with a
-leakage-free split, and an exploratory analysis quantifying density fidelity,
-connectivity, and feature structure.
-
-The next deliverables implement the remaining research steps: (i) training the
-feed-forward network to regress $h^\ast(n)/N$; (ii) integrating $h_\theta$ into A$^\ast$;
-and (iii) evaluating nodes expanded, path-optimality ratio, and per-move latency against
-Manhattan A$^\ast$ and the exact oracle heuristic---thereby testing the project's central
-hypothesis.
+Deliverable~2 successfully establishes the model architecture, multi-task optimization
+framework, and rigorous empirical evaluation comparing classical graph-search heuristics
+with learned neural heuristics. Across 282 unseen test environments spanning diverse obstacle
+densities and procedural generator regimes, the neural heuristic accurately reflects geodesic
+distances ($R^2 = 0.8597$) and cleanly separates distance deciles (OvR Macro AUC-ROC = $0.9444$).
+When integrated into A$^\ast$ search with Manhattan clipping, the neural heuristic achieves
+near-exact path optimality ($1.001$), sub-2 ms latency, and a 100\% solving rate, laying the
+foundation for hyperparameter ablations and dynamic deployment in subsequent project phases.
 
 % ===========================================================================
 \begin{thebibliography}{9}
@@ -465,6 +479,8 @@ in \emph{Proc. International Conference on Machine Learning (ICML)}, 2021.
 
 % ===========================================================================
 \appendix
+\input{report/sections/appendix.tex}
+
 \section{Repository Structure}
 % ===========================================================================
 \begin{verbatim}
