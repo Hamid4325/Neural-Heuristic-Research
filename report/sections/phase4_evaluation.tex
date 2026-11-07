@@ -1,0 +1,52 @@
+% Phase 4: Empirical Evaluation and Comparative Analysis
+% Author: Abdullah Zia (Evaluation, Analysis, and Report Lead)
+
+\section{Phase 4: Empirical Evaluation}
+
+\subsection{Evaluation Methodology and Metric Formulation}
+To rigorously assess the performance of the neural-guided heuristic relative to classical
+baselines, we establish an evaluation protocol spanning regression fidelity, auxiliary
+classification discrimination, and end-to-end graph search efficiency.
+
+\subsubsection{Data Leakage Prevention and Split Structure}
+Evaluation is strictly isolated on the unseen test set of 282 mazes partition (15\% of
+the cleaned corpus), partitioned by complete maze environment rather than individual cell
+instances. This environment-level partitioning guarantees zero leakage of global maze
+topologies, wall distributions, and goal placements between training and evaluation phases.
+
+\subsubsection{Regression and Admissibility Metrics}
+For a given maze of dimension $N \times N$, let $h^\ast(n)$ denote the ground-truth optimal
+shortest-path cost from cell $n$ to the goal, and let $\hat{h}_\theta(n)$ denote the
+neural prediction. Because models are trained to predict normalized distances $y = h^\ast / N$,
+primary regression metrics include:
+\begin{itemize}
+    \item \textbf{Mean Squared Error (MSE)} and \textbf{Root Mean Squared Error (RMSE)}:
+    \begin{equation}
+        \text{RMSE} = \sqrt{\frac{1}{|\mathcal{S}|} \sum_{n \in \mathcal{S}} \left(\hat{y}(n) - y(n)\right)^2}
+    \end{equation}
+    where $\mathcal{S}$ is the set of all free reachable cells.
+    \item \textbf{Mean Absolute Error (MAE)} in normalized units and raw grid cells ($\text{MAE} \times N$).
+    \item \textbf{Correlation Measures}: Pearson linear correlation coefficient $r$ and Spearman rank correlation coefficient $\rho$.
+    \item \textbf{Admissibility Violation Rate}: Fraction of reachable cells where the unscaled heuristic overestimates true distance beyond tolerance $\epsilon$:
+    \begin{equation}
+        \text{Violations}(\epsilon) = \frac{1}{|\mathcal{S}|} \sum_{n \in \mathcal{S}} \mathbb{I}\left[(\hat{h}_\theta(n) - h^\ast(n)) > \epsilon\right]
+    \end{equation}
+\end{itemize}
+
+\subsubsection{Auxiliary 10-Bin Classification Metrics}
+To assess spatial range discrimination, targets are discretized into 10 decile distance bins.
+We compute per-class Precision, Recall, and $F_1$-score, macro-averaged and weighted $F_1$,
+and Macro One-vs-Rest Area Under the ROC Curve (AUC-ROC).
+
+\subsubsection{Search Performance Metrics}
+During deterministic $A^\ast$ execution, we measure:
+\begin{enumerate}
+    \item \textbf{Nodes Expanded}: The exact count of states popped from the priority queue and closed.
+    \item \textbf{Nodes Generated}: Total valid states inserted into the open set.
+    \item \textbf{Path Cost and Optimality Ratio}: Ratio of resulting path length to optimal Dijkstra cost $c / c^\ast$.
+    \item \textbf{Relative Node Reduction}: Reduction in expansions relative to Manhattan $A^\ast$:
+    \begin{equation}
+        \Delta_{\text{expanded}} = 1 - \frac{\text{Nodes}_{\text{neural}}}{\text{Nodes}_{\text{manhattan}}}
+    \end{equation}
+    \item \textbf{Runtime and Peak Open Set}: CPU wall-clock latency per maze and memory footprint.
+\end{enumerate}
