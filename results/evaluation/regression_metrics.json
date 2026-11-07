@@ -1,0 +1,19 @@
+{
+  "mse": 0.01976348046715824,
+  "rmse": 0.1405826463940633,
+  "mae": 0.07245386201054789,
+  "r2": 0.8597050735129104,
+  "pearson": 0.9275587443651034,
+  "spearman": 0.9487919859523242,
+  "mean_signed_error": -0.009459974285094068,
+  "p95_absolute_error": 0.2290235280990594,
+  "p99_absolute_error": 0.6476578563451758,
+  "max_absolute_error": 1.8931090235710144,
+  "grid_size": 60.0,
+  "mae_cells": 4.347231720632873,
+  "rmse_cells": 8.434958783643797,
+  "mean_signed_error_cells": -0.567598457105644,
+  "p95_absolute_error_cells": 13.741411685943564,
+  "p99_absolute_error_cells": 38.859471380710545,
+  "max_absolute_error_cells": 113.58654141426086
+}

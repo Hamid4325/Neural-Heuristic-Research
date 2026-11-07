@@ -1,0 +1,10 @@
+{
+  "epsilon_cells": 0.5,
+  "grid_size": 60.0,
+  "total_cells": 100000,
+  "violation_count": 58047,
+  "violation_rate": 0.58047,
+  "mean_overestimation_cells": 1.8898166317636147,
+  "max_overestimation_cells": 20.448052883148193,
+  "p95_overestimation_cells": 6.589479982852933
+}

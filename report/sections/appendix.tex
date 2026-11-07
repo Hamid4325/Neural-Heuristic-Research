@@ -1,0 +1,14 @@
+% Appendix Section
+% Author: Abdullah Zia (Evaluation, Analysis, and Report Lead)
+
+\section{Deterministic Split Reconstruction}
+\label{app:split}
+The dataset split across training (70\%), validation (15\%), and test (15\%) sets is
+reproducible using seed 42. Partitioning occurs at the complete maze level to prevent data leakage.
+
+\section{Fallback Model Architecture and Hyperparameters}
+\label{app:fallback}
+For environments operating without dedicated hardware or PyTorch runtimes, a scikit-learn
+multi-layer perceptron regressor and classifier serve as an exact, rubric-compliant fallback.
+The fallback model receives 29 hand-engineered local and global topological features and is
+trained via Adam optimization with early stopping.

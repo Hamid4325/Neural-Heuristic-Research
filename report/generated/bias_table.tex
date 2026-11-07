@@ -1,0 +1,27 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Subgroup} & \textbf{Partition} & \textbf{MAE (cells)} & \textbf{RMSE (cells)} & \textbf{Signed Err} & \textbf{Inadm. Rate} & \textbf{$\Delta_{\text{expanded}}$ vs Man.} \\
+\midrule
+Cell Position & Boundary & 4.49 & 8.09 & -0.13 & 60.1\% & --- \\
+Cell Position & Interior & 4.33 & 8.67 & -0.81 & 57.4\% & --- \\
+Wall Adjacency & Clustered/Adjacent & 5.79 & 9.36 & -0.74 & 56.6\% & --- \\
+Wall Adjacency & Open Corridors & 3.95 & 8.19 & -0.53 & 58.8\% & --- \\
+Generator & backtracker & --- & --- & --- & --- & -9.0\% \\
+Generator & perlin & --- & --- & --- & --- & -4.6\% \\
+Grid Size & 20 & --- & --- & --- & --- & 0.2\% \\
+Grid Size & 40 & --- & --- & --- & --- & -2.4\% \\
+Grid Size & 60 & --- & --- & --- & --- & -9.7\% \\
+Grid Size & 80 & --- & --- & --- & --- & -7.0\% \\
+Grid Size & 100 & --- & --- & --- & --- & -14.4\% \\
+Obstacle Density (%) & 10 & --- & --- & --- & --- & -13.7\% \\
+Obstacle Density (%) & 20 & --- & --- & --- & --- & -6.7\% \\
+Obstacle Density (%) & 30 & --- & --- & --- & --- & -3.7\% \\
+Obstacle Density (%) & 40 & --- & --- & --- & --- & -0.2\% \\
+\bottomrule
+\end{tabular}
+\caption{Environmental and topological subgroup evaluation (Bias and Fairness analysis).}
+\label{tab:bias_results}
+\end{table}

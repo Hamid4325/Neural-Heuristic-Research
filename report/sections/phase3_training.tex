@@ -1,0 +1,19 @@
+% Phase 3: Model Training and Optimization
+% Lead: Muhammad Abdullah Saeed
+
+\section{Phase 3: Optimization and Training Strategy}
+
+\subsection{Loss Formulation and Objective}
+The multi-task loss is formulated as a weighted combination of Mean Squared Error (MSE)
+and auxiliary Cross-Entropy (CE):
+\begin{equation}
+    \mathcal{L}_{\text{total}} = \mathcal{L}_{\text{MSE}}(y, \hat{y}) + \lambda \mathcal{L}_{\text{CE}}(y_{\text{bin}}, \hat{y}_{\text{logits}})
+\end{equation}
+where $\lambda = 0.20$ balances continuous geodesic distance prediction with discrete range classification.
+
+\subsection{Hyperparameter Optimization and Setup}
+Optimization is conducted using Adam with initial learning rate $\eta = 10^{-3}$, weight decay
+$\gamma = 10^{-4}$, batch size 4,096, and early stopping on validation loss with patience of 5 epochs.
+Training operates on CPU-accessible tensors with standard target normalization.
+Model artifacts and weights are released via the Hugging Face Hub under:
+\texttt{https://huggingface.co/x-abdullah-saeed-x/Neural-Heuristic-Research}.
