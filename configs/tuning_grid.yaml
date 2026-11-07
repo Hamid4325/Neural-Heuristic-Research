@@ -1,0 +1,71 @@
+# Staged hyperparameter search (plan Section 6.3).
+#
+#   python -m src.tune --config configs/tuning_grid.yaml
+#
+# Stage A : 12 configurations from the grid (the default config + 11 random ones),
+#           400k train cells per epoch, 100k val cells, 5 epochs each.
+# Stage B : the top 3 configurations of stage A, 1.5M train cells per epoch, 10 epochs.
+# Stage C : the best configuration of stage B on the FULL train split, up to 20 epochs
+#           with early stopping. Its checkpoint is the first real checkpoint.
+#
+# NOTE: write numbers as plain decimals (0.0001), never 1e-4: YAML reads "1e-4" as text.
+
+base_config: configs/default.yaml   # everything not listed in `grid` comes from here
+seed: 42                            # seeds the random sampling AND every training run
+include_default: true               # the default config is always one of the 12
+
+grid:
+  hidden_dims: [[128, 128], [256, 256], [256, 256, 128], [512, 256]]
+  activation: [relu, gelu]
+  dropout: [0.0, 0.1, 0.2]
+  batch_size: [256, 1024, 2048]
+  learning_rate: [0.0001, 0.0003, 0.001]
+  weight_decay: [0.0, 0.00001, 0.0001]
+  reg_loss: [mse, smooth_l1]
+  lambda_aux: [0.0, 0.1, 0.5]
+  target_transform: [raw, standardised]
+
+stage_a:
+  n_configs: 12
+  epochs: 5
+  max_train_cells_per_epoch: 400000
+  max_val_cells: 100000
+  patience: 5
+
+stage_b:
+  top_k: 3
+  epochs: 10
+  max_train_cells_per_epoch: 1500000
+  max_val_cells: null               # null = whole validation split
+  patience: 5
+
+stage_c:
+  epochs: 20
+  max_train_cells_per_epoch: null   # null = the full train split every epoch
+  max_val_cells: null
+  patience: 5
+
+# Used by `--quick`: a tiny version of the same pipeline to check that everything works.
+quick:
+  stage_a:
+    n_configs: 3
+    epochs: 1
+    max_train_cells_per_epoch: 20000
+    max_val_cells: 10000
+    patience: 5
+  stage_b:
+    top_k: 2
+    epochs: 1
+    max_train_cells_per_epoch: 40000
+    max_val_cells: 20000
+    patience: 5
+  stage_c:
+    epochs: 2
+    max_train_cells_per_epoch: 60000
+    max_val_cells: 20000
+    patience: 5
+
+output:
+  results_dir: results/tuning                 # run folders + tuning_summary.csv (committed)
+  quick_results_dir: results/tuning_quick     # --quick runs (do NOT commit)
+  final_checkpoint: models/tuned_best.pt      # stage C checkpoint (git-ignored)
