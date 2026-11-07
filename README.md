@@ -143,7 +143,7 @@ Trained model checkpoints are hosted on the Hugging Face Hub (per non-negotiable
 
 | Member | GitHub Username | Core Modules | Primary Responsibilities |
 |---|---|---|---|
-| **Abdullah Zia** | `@24L2507` | `src/search.py`, `src/metrics.py`, `src/evaluate.py`, `src/analysis.py`, `src/sklearn_heuristic.py` | A* search, evaluation harness, baselines, error & bias checks, LaTeX tables, publication figures, report |
+| **Abdullah Zia** | `@HarveyWebbs` | `src/search.py`, `src/metrics.py`, `src/evaluate.py`, `src/analysis.py`, `src/sklearn_heuristic.py` | A* search, evaluation harness, baselines, error & bias checks, LaTeX tables, publication figures, report |
 | **Muhammad Abdullah Saeed** | `@x-abdullah-saeed-x` | `src/data.py`, `src/train.py`, `src/tune.py`, `src/config.py` | Data loaders, split manifests, hyperparameter tuning, PyTorch training loop, checkpointing |
 | **Muhammad Hamid Abad** | `@Hamid4325` | `src/model.py`, `src/features.py`, `src/heuristics.py` | Multi-task architecture, feature refactoring, heuristic wrappers, ablations |
 
