@@ -62,6 +62,7 @@ class TrainConfig:
     max_train_cells_per_epoch: int = 1_500_000
     max_val_cells: Optional[int] = None  # None = use the whole validation split
     target_transform: str = "standardised"  # raw | standardised
+    bin_strategy: str = "quantile"       # quantile | uniform (auxiliary distance bins)
     models_dir: str = DEFAULT_MODELS_DIR
     results_dir: str = DEFAULT_RESULTS_DIR
 

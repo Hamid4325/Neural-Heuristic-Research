@@ -1,0 +1,45 @@
+# Default training configuration (plan Section 6.2).
+# Keep these values in sync with the dataclass defaults in src/config.py
+# (tests/test_train_smoke.py checks that they are identical).
+# Usage: python -m src.train --config configs/default.yaml --output models/run_default
+
+data:
+  cleaned_dir: data/cleaned
+  processed_dir: data/processed
+  manifest_path: data/processed/split_manifest.json
+  manifest_copy_path: results/manifests/split_manifest.json
+  split_seed: 42
+
+model:                      # must match src/model.py (plan Section 3.1)
+  input_dim: 29
+  hidden_dims: [256, 256, 128]
+  dropout: 0.1
+  activation: relu
+  n_bins: 10
+
+train:
+  seed: 42
+  epochs: 20
+  batch_size: 1024
+  learning_rate: 0.0003
+  weight_decay: 0.00001
+  reg_loss: smooth_l1       # smooth_l1 | mse
+  smooth_l1_beta: 0.1
+  lambda_aux: 0.1           # weight of the 10-bin classification loss
+  grad_clip: 1.0
+  patience: 5               # early stopping, in epochs
+  lr_factor: 0.5            # ReduceLROnPlateau on validation MAE
+  lr_patience: 2
+  max_train_cells_per_epoch: 1500000
+  max_val_cells: null       # null = whole validation split
+  target_transform: standardised   # raw | standardised
+  bin_strategy: quantile           # quantile | uniform
+  models_dir: models
+  results_dir: results
+
+eval:
+  split: test
+  alphas: [0.6, 0.7, 0.8, 0.9, 1.0]
+  batch_size: 8192
+  results_dir: results
+  figures_dir: figures
