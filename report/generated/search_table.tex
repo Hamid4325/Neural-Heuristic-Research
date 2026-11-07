@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Heuristic} & \textbf{Expanded (Mean $\pm$ Std)} & \textbf{Median} & \textbf{$\Delta_{\text{expanded}}$ vs Man.} & \textbf{Opt. Ratio} & \textbf{Success} & \textbf{Time (ms)} \\
+\midrule
+Dijkstra (Zero) & $2075.0 \pm 1960.5$ & 1484 & -1756.7\% & 1.000 & 100.0\% & 12.81 \\
+Manhattan Baseline & $180.8 \pm 268.6$ & 92 & 0.0\% & 1.000 & 100.0\% & 1.48 \\
+Neural Heuristic ($\alpha=1.0$) & $547.1 \pm 642.2$ & 342 & -309.3\% & 1.034 & 100.0\% & 4.41 \\
+Neural Scaled ($\alpha=0.8$) & $846.4 \pm 954.7$ & 550 & -565.2\% & 1.019 & 100.0\% & 6.40 \\
+Neural Clipped Manhattan & $188.9 \pm 274.4$ & 96 & -6.7\% & 1.001 & 100.0\% & 1.67 \\
+Oracle ($h^\ast$ Upper Bound) & $52.8 \pm 29.5$ & 49 & 41.8\% & 1.000 & 100.0\% & 0.46 \\
+\bottomrule
+\end{tabular}
+\caption{End-to-end A$^\ast$ pathfinding performance evaluated across 282 test mazes.}
+\label{tab:search_results}
+\end{table}

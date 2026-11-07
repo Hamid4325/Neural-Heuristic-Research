@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Normalized Value ($h^\ast / N$)} & \textbf{Grid Cells ($N=60$)} \\
+\midrule
+Mean Squared Error (MSE) & 0.0198 & --- \\
+Root Mean Squared Error (RMSE) & 0.1406 & 8.43 \\
+Mean Absolute Error (MAE) & 0.0725 & 4.35 \\
+Mean Signed Error & -0.0095 & -0.57 \\
+Coefficient of Determination ($R^2$) & 0.8597 & --- \\
+Pearson Correlation ($r$) & 0.9276 & --- \\
+Spearman Rank Correlation ($\rho$) & 0.9488 & --- \\
+95th Percentile Absolute Error & 0.2290 & 13.74 \\
+99th Percentile Absolute Error & 0.6477 & 38.86 \\
+Maximum Absolute Error & 1.8931 & 113.59 \\
+\bottomrule
+\end{tabular}
+\caption{Offline regression fidelity metrics evaluated on the unseen test set.}
+\label{tab:regression_results}
+\end{table}

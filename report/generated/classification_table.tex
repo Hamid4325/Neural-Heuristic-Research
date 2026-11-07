@@ -1,0 +1,26 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Distance Bin} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\midrule
+Bin 0 & 0.8981 & 0.9189 & 0.9084 & 9,805 \\
+Bin 1 & 0.7602 & 0.7733 & 0.7667 & 9,677 \\
+Bin 2 & 0.6922 & 0.7826 & 0.7346 & 10,663 \\
+Bin 3 & 0.6753 & 0.6162 & 0.6444 & 10,043 \\
+Bin 4 & 0.5953 & 0.6619 & 0.6268 & 9,937 \\
+Bin 5 & 0.5956 & 0.4817 & 0.5326 & 9,768 \\
+Bin 6 & 0.4937 & 0.5307 & 0.5115 & 9,309 \\
+Bin 7 & 0.5173 & 0.6225 & 0.5650 & 9,337 \\
+Bin 8 & 0.6642 & 0.6771 & 0.6706 & 10,524 \\
+Bin 9 & 0.9024 & 0.6590 & 0.7617 & 10,937 \\
+\midrule
+Macro Average & 0.6794 & 0.6724 & 0.6722 & --- \\
+Weighted Average & 0.6834 & 0.6739 & 0.6749 & --- \\
+\textbf{Macro AUC-ROC (OvR)} & \multicolumn{4}{c}{\textbf{0.9444}} \\
+\bottomrule
+\end{tabular}
+\caption{Auxiliary 10-bin classification performance across distance deciles.}
+\label{tab:classification_results}
+\end{table}
