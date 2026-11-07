@@ -8,3 +8,4 @@ PyYAML>=6.0
 tqdm>=4.66.0
 huggingface_hub>=0.23.0
 pytest>=8.0.0
+joblib>=1.2.0
